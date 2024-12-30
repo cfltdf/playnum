@@ -168,14 +168,14 @@ if st.session_state.player_name is None:
     if st.sidebar.button('登录', key='log-in'):
         if len(player_name) > 1:
             st.session_state.player_name = player_name
-            st.experimental_rerun()
+            st.rerun()
         else:
             st.sidebar.error('名字至少两个字！')
 else:
     st.sidebar.write(f'你好，{st.session_state.player_name}！')
     if st.sidebar.button('登出', key='log-out'):
         st.session_state.player_name = None
-        st.experimental_rerun()
+        st.rerun()
 
     if st.sidebar.button('新游戏', key='button_new_game'):
         st.session_state.selected_game_id = None
@@ -238,7 +238,7 @@ else:
             else:
                 st.balloons()
                 st.session_state.selected_game_id = res
-                st.experimental_rerun()
+                st.rerun()
     else:
         gs = game.games[st.session_state.selected_game_id]
         if gs.winner is None:
@@ -268,7 +268,7 @@ else:
                 else:
                     st.balloons()
                     st.session_state.selected_game_id = res
-                    st.experimental_rerun()
+                    st.rerun()
         else:
             st.title(f'{display(gs)}： 胜者 {gs.winner}')
             df = pd.DataFrame(gs.player_list).rename(
